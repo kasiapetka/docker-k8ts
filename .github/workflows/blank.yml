@@ -1,0 +1,28 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ 'nodejs-app-starting-setup' ]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+      # Checkout the Repo
+      - uses: actions/checkout@v3
+      # Install Node 12
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Install dependencies
+      - run: npm install
+
+      # Run tests
+      - run: npm test
