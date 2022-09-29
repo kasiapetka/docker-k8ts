@@ -1,0 +1,6 @@
+docker run --name goals-backend --rm -d -v logs:/app/logs  -v $(pwd):/app -v /app/node_modules   --network goals-net -p 80:80  -e MONGODB_USER=kas  goals-node
+
+docker run --name goals-frontend --rm -it -v $(pwd)/src:/app/src  -p 3000:3000  goals-frontend
+
+
+docker run --name mongodb --rm -d -v data:/data/db  --network goals-net -e MONGO_INITDB_ROOT_USERNAME=kas -e MONGO_INITDB_ROOT_PASSWORD=root mongo
