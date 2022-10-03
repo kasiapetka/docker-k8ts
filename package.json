@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/kasiapetka/docker-k8ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasiapetka/docker-k8ts/issues"
+  },
+  "homepage": "https://github.com/kasiapetka/docker-k8ts#readme",
+  "dependencies": {
+    "@azure/storage-blob": "^12.11.0",
+    "express": "^4.18.1"
+  },
+  "description": ""
+}
