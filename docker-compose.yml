@@ -42,8 +42,8 @@ services:
  
   artisan:
     build: 
-      context: ./dockerfiles
-      dockerfile: php.dockerfile
+      context: .
+      dockerfile: dockerfiles/php.dockerfile
     volumes:
       - ./src:/var/www/html
     # if we want to override or add entrypoint to a dockerfile we can use it like:
