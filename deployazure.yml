@@ -1,0 +1,47 @@
+apiVersion: 2019-12-01
+location: canadacentral
+name: aaa
+properties:
+  containers:
+  - name: mongodb
+    properties:
+      environmentVariables:
+        - name: 'MONGO_INITDB_ROOT_USERNAME'
+          value: 'max'
+        - name: 'MONGO_INITDB_ROOT_PASSWORD'
+          secureValue: 'secret'
+      image: mongo
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+  - name: backend
+    properties:
+      environmentVariables:
+        - name: 'MONGODB_URL'
+          value: 'localhost'
+        - name: 'MONGODB_USERNAME'
+          value: 'max'
+        - name: 'MONGODB_PASSWORD'
+          secureValue: 'secret'
+      image: kasiapetka/multicontainer
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+      - port: 8080
+  osType: Linux
+  ipAddress:
+    type: Private
+    ports:
+    - protocol: tcp
+      port: '80'
+  osType: Linux
+  restartPolicy: Always
+  subnetIds:
+    - id: 
+      name: default
+tags: {exampleTag: tutorial}
+type: Microsoft.ContainerInstance/containerGroups
