@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: js-app
+spec: 
+  replicas: 2
+  # selector is mandatory, matchLabels key helps the 
+  # deployment to select the pods it needs to control when it is running after we applied the file
+  # only pods with both those labels will be controlled by this deployment
+  selector: 
+    # matchExpressions:
+    matchLabels:
+      app: jsapp
+      tier: backend
+  template:
+  # it is always a pod template for deployment, we dont need a kind: Pod here
+    metadata: 
+      labels: 
+        app: jsapp
+        tier: backend
+    spec:
+      containers: 
+        - name: node-js-app
+          image: kasiapetka/kub-app:1
+          imagePullPolicy: Always
+          livenessProbe: 
+            httpGet:
+              path: /
+              port: 8080
+              # httpHeaders:
+            periodSeconds: 10 
+            initialDelaySeconds: 5
+        #   for multiple containers:
+        # - name: ...
+        #   image: ...

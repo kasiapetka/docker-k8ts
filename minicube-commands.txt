@@ -1,0 +1,24 @@
+k create deployment first-app --image=kasiapetka/kub-app
+
+k expose deployment first-app --type=LoadBalancer  --port=8080 
+
+k scale deploy first-app --replicas=3
+
+updates the current image (the image tag needs to differ) 
+k set image deployment/first-app kub-app=kasiapetka/kub-app:1
+
+shows the status of the deployment
+k rollout status deployment/first-app
+
+rolls back the last deployment 
+k rollout undo deployment/first-app
+if we want to rollback to a specific deployment:
+k rollout undo deployment/first-app --to-revision=3
+
+shows deployment history
+k rollout history deployment/first-app
+k rollout history deployment/first-app --revision 3
+
+
+
+k delete -f deployment.yaml -f service.yaml 
