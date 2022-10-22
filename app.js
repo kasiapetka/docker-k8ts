@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const filePath = path.join(__dirname, 'story', 'text.txt');
+const filePath = path.join(__dirname, process.env.STORY_FOLDER, 'text.txt');
 
 app.use(bodyParser.json());
 
@@ -31,5 +31,9 @@ app.post('/story', (req, res) => {
     res.status(201).json({ message: 'Text was stored!' });
   });
 });
+
+app.get('/error',()=>{
+  process.exit(1);
+})
 
 app.listen(3000);
