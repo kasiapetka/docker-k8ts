@@ -1,0 +1,16 @@
+az deployment group create \
+  --name aksdeploytest \
+  --resource-group  \
+  --template-file ./aks-arm-deploy.json \
+  --parameters clusterName=klaster1 linuxAdminUsername=uzytkownik   sshRSAPublicKey=''  dnsPrefix=test123
+ 
+
+
+ az aks get-credentials --resource-group   --name klaster1 --file ./klaster1.kubeconfig
+
+
+export KUBECONFIG=klaster1.kubeconfig
+
+kubectl get po 
+
+kubectl apply -f auth.yaml -f users.yaml 
